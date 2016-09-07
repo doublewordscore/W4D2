@@ -1,0 +1,35 @@
+<h1> Create New Cat </h1>
+
+<form action="<%= cats_path %>" method="POST">
+  <p>
+  <label for="cat[name]">Name</label>
+  <input type="text" name="cat[name]">
+  </p>
+
+  <p>
+  <label for="cat[sex]">Sex: </label>
+  <label>M</label><input type="radio" name="cat[sex]" value='M'>
+  <label>F</label><input type="radio" name="cat[sex]" value="F">
+  </p>
+
+  <p>
+  <select id="color" name="cat[color]">
+  <option value = "select a color" disable="true" selected="true">Select a color.</option>
+  <% Cat.colors.each do |color| %>
+    <option value="<%= color %>"><%= color %></option>
+  <% end %>
+  </select>
+  </p>
+
+  <p>
+  <label for="cat[birth_date]">Birth Date: </label>
+  <input type="date" name="cat[birth_date]">
+  </p>
+
+  <label for="cat[description]">Description:</label>
+  <p>
+  <textarea name="cat[description]" cols="40" rows="10"></textarea>
+  </p>
+
+  <input type="submit" value="Create Cat">
+</form>

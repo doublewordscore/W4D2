@@ -1,0 +1,48 @@
+<h1> Edit <%= @cat.name %></h1>
+
+<form action="<%= cat_url %>" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <p>
+  <label for="cat[name]">Name</label>
+  <input type="text" name="cat[name]" value="<%= @cat.name %>">
+  </p>
+
+  <p>
+  <label for="cat[sex]">Sex: </label>
+  <% if @cat.sex == 'M' %>
+    <label>M</label><input type="radio" name="cat[sex]" value='M' selected="true">
+    <label>F</label><input type="radio" name="cat[sex]" value="F">
+  <% else  %>
+    <label>M</label><input type="radio" name="cat[sex]" value='M'>
+    <label>F</label><input type="radio" name="cat[sex]" value="F" selected="true">
+  <% end %>
+  </p>
+
+  <p>
+  <select id="color" name="color">
+  <option value = "select a color" disable="true" selected="true">Select a color.</option>
+  <% Cat.colors.each do |color| %>
+    <% if @cat.color == color %>
+      <option value="<%= color %>" selected="true"><%= color %></option>
+    <% else %>
+      <option value="<%= color %>"><%= color %></option>
+    <% end %>
+  <% end %>
+  </select>
+  </p>
+
+  <p>
+  <label for="cat[birth_date]">Birth Date: </label>
+  <input type="date" name="cat[birth_date]" value="<%= @cat.birth_date.to_s %>">
+  </p>
+
+  <label for="cat[description]">Description:</label>
+  <p>
+  <textarea name="cat[description]" cols="40" rows="10">
+    <%= @cat.description %>
+  </textarea>
+  </p>
+
+  <input type="submit" value="Save Changes">
+
+</form>
